@@ -204,6 +204,10 @@ const deserialize: (Object) => Object = R.map(
  * https://github.com/LLK/po2icu/blob/9eb97f81f72b2fee02b77f1424702e019647e9b9/lib/po2icu.js#L148.
  */
 const getPluralCases = (lang: string): string[] | undefined => {
+  if (lang.includes("_")) {
+    lang = lang.split("_")[0];
+  }
+
   const gettextPluralsInfo = gettextPlurals[lang]
 
   return gettextPluralsInfo?.examples.map((pluralCase) =>
